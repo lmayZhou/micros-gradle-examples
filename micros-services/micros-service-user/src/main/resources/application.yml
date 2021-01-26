@@ -1,0 +1,10 @@
+# 服务端口
+server:
+  port: 8300
+
+# Spring 配置
+spring:
+  application:
+    name: ht-example
+  profiles:
+    active: dev

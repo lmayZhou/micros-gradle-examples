@@ -1,0 +1,10 @@
+# 服务端口
+server:
+  port: 8100
+
+# Spring 配置
+spring:
+  application:
+    name: micros-gateway
+  profiles:
+    active: dev

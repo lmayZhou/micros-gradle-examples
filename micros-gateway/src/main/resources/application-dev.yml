@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    # Nacos 注册中心
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 192.168.30.180:8848
+        namespace: a03fbe75-bfcf-4d9e-b848-5da01fc74201
+    # 网关
+    gateway:
+      globalcors:
+        cors-configurations:
+          # 匹配所有请求
+          '[/**]':
+            # 跨域处理 允许所有的域
+            allowedOrigins: "*"
+            # 支持的方法
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+
+# 日志
+logging:
+  config: classpath:log4j2-dev.xml

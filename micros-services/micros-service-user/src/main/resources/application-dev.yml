@@ -1,0 +1,119 @@
+spring:
+  shardingsphere:
+    enabled: true
+    datasource:
+      names: master0,m0-slave1,m0-slave2,master1,m1-slave1,m1-slave2
+      master0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.0.10:3201/cluster_db1?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+      m0-slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.0.10:3401/cluster_db1?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+      m0-slave2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.0.10:3402/cluster_db1?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+      master1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.0.10:3201/cluster_db2?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+      m1-slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.0.10:3401/cluster_db2?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+      m1-slave2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.0.10:3402/cluster_db2?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+    sharding:
+      # 绑定表规则列表
+      binding-tables: tb_user,tb_logs
+      # 读写分离配置
+      master-slave-rules:
+        ds0:
+          master-data-source-name: master0
+          slave-data-source-names: m0-slave1, m0-slave2
+        ds1:
+          master-data-source-name: master1
+          slave-data-source-names: m1-slave1, m1-slave2
+      # 默认数据库分片策略，同分库策略(根据主键ID分库)
+      default-database-strategy:
+        inline:
+          algorithm-expression: ds$->{id % 2}
+          sharding-column: id
+      tables:
+        # 用户表
+        tb_user:
+          # 数据节点
+          actual-data-nodes: ds$->{0..1}.tb_user$->{0..1}
+          # 生成主键值
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+#          # 分库策略(根据主键ID分库)
+#          database-strategy:
+#            inline:
+#              algorithm-expression: ds$->{id % 2}
+#              sharding-column: id
+          # 分表策略(根据性别分表)
+          table-strategy:
+            inline:
+              algorithm-expression: tb_user$->{sex % 2}
+              sharding-column: sex
+        # 日志表
+        tb_logs:
+          actual-data-nodes: ds$->{0..1}.tb_logs$->{0..1}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+          # 分表策略(根据用户ID分表)
+          table-strategy:
+            inline:
+              algorithm-expression: tb_logs$->{user_id % 2}
+              sharding-column: user_id
+#    props:
+#      # 开启SQL显示
+#      sql:
+#        show: true
+#    masterslave:
+#      # 读写分离配置
+#      load-balance-algorithm-type: round_robin
+#      # 最终的数据源名称
+#      name: dataSource
+#      # 主库数据源名称
+#      master-data-source-name: master
+#      # 从库数据源名称列表，多个逗号分隔
+#      slave-data-source-names:
+#        - slave1
+#        - slave2
+
+# Mybatis
+mybatis:
+  type-aliases-package: com.lmaye.micros.service.user.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    # 驼峰命名转换
+    map-underscore-to-camel-case: true
+    # 使用列的别名替换列名
+    use-column-label: true
+    # 使用jdbc的getGeneratedKeys获取数据库自增主键值
+    use-generated-keys: true
+    # 控制台打印sql语句
+    # org.apache.ibatis.logging.stdout.StdOutImpl
+    # log4j打印sql语句
+    # org.apache.ibatis.logging.log4j2.Log4j2Impl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
