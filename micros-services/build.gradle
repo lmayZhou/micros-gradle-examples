@@ -1,0 +1,14 @@
+// 子项目配置
+subprojects {
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+// 不打Jar包
+jar.enabled = false

@@ -1,0 +1,24 @@
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation "com.google.code.gson:gson"
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names'
+    implementation "cn.hutool:hutool-all:${hutoolVersion}"
+    implementation "commons-io:commons-io:${commonsIoVersion}"
+    implementation "org.lionsoul:ip2region:${ip2regionVersion}"
+    implementation "org.owasp.antisamy:antisamy:${antisamyVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
+    implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
