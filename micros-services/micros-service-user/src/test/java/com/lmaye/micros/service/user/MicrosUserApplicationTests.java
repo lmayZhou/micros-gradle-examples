@@ -1,10 +1,10 @@
-package com.example.micros.gateway;
+package com.lmaye.micros.service.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicrosGatewayApplicationTests {
+class MicrosUserApplicationTests {
 
     @Test
     void contextLoads() {

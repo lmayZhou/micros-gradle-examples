@@ -5,6 +5,13 @@ server:
 # Spring 配置
 spring:
   application:
-    name: ht-example
+    name: micros-user
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   profiles:
-    active: dev
+    # sdt: 读写分离 + 分表分库
+    # sms: 读写分离
+    # sin: 单库
+    active: sdt

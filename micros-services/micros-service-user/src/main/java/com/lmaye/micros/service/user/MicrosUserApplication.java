@@ -13,8 +13,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-public class MicrosServiceUserApplication {
+public class MicrosUserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MicrosServiceUserApplication.class, args);
+        SpringApplication.run(MicrosUserApplication.class, args);
     }
 }

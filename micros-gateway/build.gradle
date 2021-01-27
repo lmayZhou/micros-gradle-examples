@@ -1,28 +1,6 @@
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter') {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-    }
-    /*implementation('org.springframework.boot:spring-boot-starter-web') {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-    }*/
-    implementation 'org.springframework.boot:spring-boot-starter-undertow'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation "com.lmax:disruptor:${disruptorVersion}"
-    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
-    implementation('org.springframework.cloud:spring-cloud-starter-gateway') {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-webflux'
-    }
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-// 解决: LoggingException: log4j-slf4j-impl cannot be present with log4j-to-slf4j
-configurations.all {
-    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-}
-
-test {
-    useJUnitPlatform()
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
 }

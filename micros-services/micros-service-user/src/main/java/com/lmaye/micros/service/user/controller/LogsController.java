@@ -1,6 +1,6 @@
 package com.lmaye.micros.service.user.controller;
 
-import com.hellotech.ht.common.context.ResultVO;
+import com.lmaye.micros.core.context.ResultVO;
 import com.lmaye.micros.service.user.entity.Logs;
 import com.lmaye.micros.service.user.service.ILogsService;
 import io.swagger.annotations.Api;

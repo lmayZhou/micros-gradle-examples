@@ -1,0 +1,64 @@
+spring:
+  cloud:
+    # Nacos 注册中心
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 192.168.30.180:8848
+        namespace: a03fbe75-bfcf-4d9e-b848-5da01fc74201
+  # sharding jdbc
+  shardingsphere:
+    enabled: true
+    datasource:
+      names: master,slave1,slave2
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.30.180:3201/cluster_db1?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.30.180:3401/cluster_db1?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+      slave2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://192.168.30.180:3402/cluster_db1?allowMultiQueries=true&useSSL=false&characterEncoding=utf8
+        username: db_cluster
+        password: db123
+    masterslave:
+      # 读写分离配置
+      load-balance-algorithm-type: round_robin
+      # 最终的数据源名称
+      name: dataSource
+      # 主库数据源名称
+      master-data-source-name: master
+      # 从库数据源名称列表，多个逗号分隔
+      slave-data-source-names:
+        - slave1
+        - slave2
+#    props:
+#      # 开启SQL显示
+#      sql:
+#        show: true
+
+# Mybatis
+mybatis:
+  type-aliases-package: com.hellotech.cloud.example.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    # 驼峰命名转换
+    map-underscore-to-camel-case: true
+    # 使用列的别名替换列名
+    use-column-label: true
+    # 使用jdbc的getGeneratedKeys获取数据库自增主键值
+    use-generated-keys: true
+    # 控制台打印sql语句
+    # org.apache.ibatis.logging.stdout.StdOutImpl
+    # log4j打印sql语句
+    # org.apache.ibatis.logging.log4j2.Log4j2Impl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
