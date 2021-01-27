@@ -38,5 +38,3 @@ configurations.all {
 test {
     useJUnitPlatform()
 }
-
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

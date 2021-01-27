@@ -20,5 +20,3 @@ dependencies {
     implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
     implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
 }
-
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
