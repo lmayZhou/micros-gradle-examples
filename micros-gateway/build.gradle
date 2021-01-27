@@ -1,6 +1,22 @@
+apply plugin: 'jar'
+
 dependencies {
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
     implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
 }
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+/*// 字符编码处理
+def defaultEncoding = 'UTF-8'
+
+// 生成Java文档的任务
+javadoc {
+    options.encoding = defaultEncoding
+    options.addBooleanOption('Xdoclint:none', true)
+}*/
