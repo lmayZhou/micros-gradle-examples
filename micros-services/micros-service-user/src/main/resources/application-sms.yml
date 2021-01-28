@@ -62,3 +62,7 @@ mybatis:
     # log4j打印sql语句
     # org.apache.ibatis.logging.log4j2.Log4j2Impl
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 日志
+logging:
+  config: classpath:log4j2-dev.xml
