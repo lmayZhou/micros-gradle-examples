@@ -12,7 +12,7 @@ buildscript {
     }
 }
 // 插件
-plugins {
+/*plugins {
     id 'org.springframework.boot' version "${springBootVersion}" apply false
     id 'io.spring.dependency-management' version "${springIOVersion}"
     id 'idea'
@@ -20,7 +20,7 @@ plugins {
     id 'java-library'
     id 'maven'
     id 'maven-publish'
-}
+}*/
 // 所有项目
 allprojects {
     // 版本管理
