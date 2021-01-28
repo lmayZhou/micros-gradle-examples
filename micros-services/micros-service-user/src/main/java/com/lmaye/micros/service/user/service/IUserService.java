@@ -1,7 +1,7 @@
 package com.lmaye.micros.service.user.service;
 
-import com.lmaye.micros.core.context.ResultVO;
 import com.lmaye.micros.service.user.entity.User;
+import com.lmaye.micros.starter.mybatis.service.IMyBatisService;
 
 /**
  * <p>
@@ -11,21 +11,6 @@ import com.lmaye.micros.service.user.entity.User;
  * @author Lmay Zhou
  * @since 2021-01-05
  */
-public interface IUserService {
-    /**
-     * 查询记录
-     * - 根据主键ID
-     *
-     * @param id 主键ID
-     * @return ResultVO<User>
-     */
-    ResultVO<User> queryById(Long id);
+public interface IUserService extends IMyBatisService<User, Long> {
 
-    /**
-     * 新增记录
-     *
-     * @param dto 数据
-     * @return ResultVO<User>
-     */
-    ResultVO<User> insert(User dto);
 }

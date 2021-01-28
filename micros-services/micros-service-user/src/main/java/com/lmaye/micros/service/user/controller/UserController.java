@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping("/queryUserInfo/{userId}")
     @ApiOperation("获取用户信息")
     public ResultVO<User> queryUserInfo(@PathVariable @ApiParam(value = "用户ID", required = true) Long userId) {
-        return userService.queryById(userId);
+        return ResultVO.success(userService.findById(userId).orElse(null));
     }
 
     /**
@@ -50,6 +50,6 @@ public class UserController {
     @PostMapping("/insert")
     @ApiOperation("新增用户信息")
     public ResultVO<User> insert(@RequestBody User dto) {
-        return userService.insert(dto);
+        return ResultVO.success(userService.insertOrUpdate(dto));
     }
 }

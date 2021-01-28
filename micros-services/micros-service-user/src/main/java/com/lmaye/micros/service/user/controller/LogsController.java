@@ -37,7 +37,7 @@ public class LogsController {
     @GetMapping("/queryLogInfo/{id}")
     @ApiOperation("获取日志信息")
     public ResultVO<Logs> queryLogInfo(@PathVariable @ApiParam(value = "主键ID", required = true) Long id) {
-        return logsService.queryById(id);
+        return ResultVO.success(logsService.findById(id).orElse(null));
     }
 
     /**
@@ -49,6 +49,6 @@ public class LogsController {
     @PostMapping("/insert")
     @ApiOperation("新增日志信息")
     public ResultVO<Logs> insert(@RequestBody Logs dto) {
-        return logsService.insert(dto);
+        return ResultVO.success(logsService.insertOrUpdate(dto));
     }
 }

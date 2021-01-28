@@ -21,7 +21,3 @@ spring:
               - POST
               - PUT
               - DELETE
-
-# 日志
-logging:
-  config: classpath:log4j2-dev.xml

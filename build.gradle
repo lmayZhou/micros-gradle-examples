@@ -16,7 +16,8 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}" apply false
     id 'io.spring.dependency-management' version "${springIOVersion}"
     id 'idea'
-    id 'java'
+//    id 'java'
+    id 'java-library'
     id 'maven'
     id 'maven-publish'
 }
@@ -25,7 +26,8 @@ allprojects {
     // 版本管理
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'idea'
-    apply plugin: 'java'
+//    apply plugin: 'java'
+    apply plugin: 'java-library'
     // 项目信息
     group = 'com.lmaye'
     version = '1.0.1-SNAPSHOT'
