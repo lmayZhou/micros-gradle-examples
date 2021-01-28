@@ -20,7 +20,6 @@ plugins {
     id 'maven'
     id 'maven-publish'
 }
-
 // 所有项目
 allprojects {
     // 版本管理
