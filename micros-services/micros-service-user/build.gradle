@@ -3,7 +3,7 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-
+// 项目依赖
 dependencies {
     implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -29,12 +29,7 @@ dependencies {
     implementation 'org.apache.shardingsphere:sharding-jdbc-spring-boot-starter:4.1.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-
 // 解决: LoggingException: log4j-slf4j-impl cannot be present with log4j-to-slf4j
 configurations.all {
     exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-}
-
-test {
-    useJUnitPlatform()
 }

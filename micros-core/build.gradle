@@ -3,7 +3,7 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-
+// 项目依赖
 dependencies {
     implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -19,4 +19,44 @@ dependencies {
     implementation "org.owasp.antisamy:antisamy:${antisamyVersion}"
     implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
     implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
+}
+// ------------------ 打包发布相关配置 ------------------
+apply plugin: 'maven'
+// 用于发布jar包到私服插件
+apply plugin: 'maven-publish'
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+// 禁用JavaDoc检查
+tasks.withType(Javadoc).all { enabled = false }
+// Java文档
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+// 私服发布配置
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
+            from components.java
+        }
+    }
+    // Maven资源库
+    repositories {
+        maven {
+            def releasesUrl = "http://192.168.30.241:8081/repository/maven-releases/"
+            def snapshotsUrl = "http://192.168.30.241:8081/repository/maven-snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsUrl : releasesUrl
+            credentials {
+                username = 'admin'
+                password = 'admin123'
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
+// 项目编译
 buildscript {
+    // Maven资源库
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
         mavenCentral()
@@ -10,35 +11,42 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
-
+// 插件
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id 'io.spring.dependency-management' version "${springIOVersion}"
+    id 'idea'
+    id 'java'
+    id 'maven'
+    id 'maven-publish'
+}
 // 所有项目
 allprojects {
-    apply plugin: 'java'
-    apply plugin: 'maven'
     // 版本管理
     apply plugin: 'io.spring.dependency-management'
-    // 用于发布jar包到私服插件
-    apply plugin: 'maven-publish'
-
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    // 项目信息
     group = 'com.lmaye'
     version = '1.0.1-SNAPSHOT'
     // 编译版本
     sourceCompatibility = "${javaVersion}"
     targetCompatibility = "${javaVersion}"
-    compileJava.options.encoding = "UTF-8"
-    compileTestJava.options.encoding = "UTF-8"
+    // 编码
+    def encoding = "UTF-8"
+    compileJava.options.encoding = encoding
+    compileTestJava.options.encoding = encoding
     // 解决Gradle编译时出现： 编码GBK的不可映射字符
 //    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
     tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
+        options.encoding = encoding
     }
-
+    // Maven资源库
     repositories {
-        // 私服地址
+        mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
     }
-
     // 管理版本
     dependencyManagement {
         imports {
@@ -47,43 +55,8 @@ allprojects {
             mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
         }
     }
-
-    // 打包源码
-    /*task sourceJar(type: Jar) {
-        from sourceSets.main.allJava
-    }*/
-
-    // 私服发布配置
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                // 指定group/artifact/version信息，可以不填。默认使用项目group/name/version作为groupId/artifactId/version
-                groupId = project.group
-                artifactId = project.name
-                version = project.version
-                // TODO
-                // 如果是war包填写components.web，如果是jar包填写components.java
-//                from components.java
-                //配置上传源码
-                /*artifact sourceJar {
-                    classifier "src"
-                }*/
-            }
-        }
-        repositories {
-            maven {
-                def releasesUrl = "http://192.168.30.241:8081/repository/maven-releases/"
-                def snapshotsUrl = "http://192.168.30.241:8081/repository/maven-snapshots/"
-                url = version.endsWith('SNAPSHOT') ? snapshotsUrl : releasesUrl
-                credentials {
-                    username = 'admin'
-                    password = 'admin123'
-                }
-            }
-        }
-    }
 }
-
-// 不打Jar包
+// 顶级不打Jar包
 jar.enabled = false
+// 项目描述
 description = "Microservice Examples project for Spring Boot"
