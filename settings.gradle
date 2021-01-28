@@ -2,6 +2,5 @@ rootProject.name = 'micros-gradle-examples'
 
 include 'micros-core'
 include 'micros-gateway'
-//include 'micros-services'
 include 'micros-services:micros-service-user'
 include 'micros-starters:micros-starter-mybatis'

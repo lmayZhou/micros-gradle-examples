@@ -14,4 +14,4 @@ spring:
     # sdt: 读写分离 + 分表分库
     # sms: 读写分离
     # sin: 单库
-    active: sdt
+    active: sin

@@ -1,8 +1,17 @@
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 // 子项目配置
 subprojects {
     // 项目依赖
     dependencies {
+        implementation 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
         implementation project(':micros-core')
+        implementation "cn.hutool:hutool-all:${hutoolVersion}"
+        implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
         implementation 'org.springframework.boot:spring-boot-configuration-processor'
         implementation 'org.springframework.boot:spring-boot-starter-json'
     }

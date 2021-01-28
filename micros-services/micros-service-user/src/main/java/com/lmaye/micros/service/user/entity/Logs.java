@@ -18,7 +18,7 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-@ApiModel(value = "com-hellotech-ht-example-entity-Logs", description = "日志信息")
+@ApiModel(value = "Logs", description = "日志信息")
 public class Logs implements Serializable {
     private static final long serialVersionUID = 1L;
 

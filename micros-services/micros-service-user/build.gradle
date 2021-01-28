@@ -8,7 +8,7 @@ dependencies {
     implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation project(':micros-core')
-//    implementation project(':ht-mybatis')
+    implementation project(':micros-starters:micros-starter-mybatis')
     implementation('org.springframework.boot:spring-boot-starter') {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }

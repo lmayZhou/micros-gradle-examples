@@ -23,19 +23,24 @@ spring:
 #      sql:
 #        show: true
 
-# Mybatis
-mybatis:
-  type-aliases-package: com.hellotech.cloud.example.entity
-  mapper-locations: classpath:mapper/*Mapper.xml
+# Mybatis Plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.lmaye.micros.service.user.entity.*
+  global-config:
+    db-config:
+      id-type: id_worker
+      insert-strategy: not_null
+      update-strategy: not_null
+      select-strategy: not_empty
+      table-underline: true
+      capital-mode: true
+  type-handlers-package: com.lmaye.micros.starter.mybatis.type
   configuration:
-    # 驼峰命名转换
+    jdbc-type-for-null: null
     map-underscore-to-camel-case: true
-    # 使用列的别名替换列名
-    use-column-label: true
-    # 使用jdbc的getGeneratedKeys获取数据库自增主键值
-    use-generated-keys: true
-    # 控制台打印sql语句
-    # org.apache.ibatis.logging.stdout.StdOutImpl
-    # log4j打印sql语句
-    # org.apache.ibatis.logging.log4j2.Log4j2Impl
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 日志
+logging:
+  config: classpath:log4j2-dev.xml
