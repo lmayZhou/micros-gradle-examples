@@ -55,3 +55,5 @@ subprojects {
 }
 // 顶级不打Jar包
 jar.enabled = false
+// 项目描述
+description = "Microservice Starters project for Spring Boot"
