@@ -3,22 +3,28 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
+/**
+ * Gradle 依赖传递:
+ * compile（implementation，api）: 这种是我们最常用的方式，使用该方式依赖的库将会参与编译和打包。
+ * implementation：该依赖方式所依赖的库不会传递，只会在当前module中生效。
+ * api：该依赖方式会传递所依赖的库，当其他module依赖了该module时，可以使用该module下使用api依赖的库。
+* */
 // 项目依赖
 dependencies {
-    implementation 'org.projectlombok:lombok'
+    compile 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    implementation "com.google.code.gson:gson"
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names'
-    implementation "cn.hutool:hutool-all:${hutoolVersion}"
-    implementation "commons-io:commons-io:${commonsIoVersion}"
-    implementation "org.lionsoul:ip2region:${ip2regionVersion}"
-    implementation "org.owasp.antisamy:antisamy:${antisamyVersion}"
-    implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
-    implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
+    compile "com.google.code.gson:gson"
+    compile 'com.fasterxml.jackson.core:jackson-databind'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    compile 'org.springframework.boot:spring-boot-starter-validation'
+    compile 'com.fasterxml.jackson.module:jackson-module-parameter-names'
+    compile "cn.hutool:hutool-all:${hutoolVersion}"
+    compile "commons-io:commons-io:${commonsIoVersion}"
+    compile "org.lionsoul:ip2region:${ip2regionVersion}"
+    compile "org.owasp.antisamy:antisamy:${antisamyVersion}"
+    compile "org.apache.commons:commons-lang3:${commonsLang3Version}"
+    compile "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
 }
 // ------------------ 打包发布相关配置 ------------------
 apply plugin: 'maven'

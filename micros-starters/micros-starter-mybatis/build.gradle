@@ -1,6 +1,6 @@
 dependencies {
     // Mysql
-    implementation 'mysql:mysql-connector-java'
+    compile 'mysql:mysql-connector-java'
     // Mybatis Plus
-    implementation "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
+    compile "com.baomidou:mybatis-plus-boot-starter:${mybatisPlusVersion}"
 }
