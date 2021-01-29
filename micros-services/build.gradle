@@ -3,12 +3,25 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     // 项目依赖
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation('org.springframework.boot:spring-boot-starter') {
+            exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        }
+        implementation('org.springframework.boot:spring-boot-starter-web') {
+            exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+        }
+        implementation 'org.springframework.boot:spring-boot-starter-undertow'
+        implementation "com.lmax:disruptor:${disruptorVersion}"
+        implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+        implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
     // 测试
     test {
         useJUnitPlatform()
+    }
+    // 解决: LoggingException: log4j-slf4j-impl cannot be present with log4j-to-slf4j
+    configurations.all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 }
 // 顶级不打Jar包

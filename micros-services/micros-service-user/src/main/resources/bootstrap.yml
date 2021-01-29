@@ -7,7 +7,7 @@ spring:
       config:
         enabled: true
         server-addr: 192.168.30.180:8848
-        namespace: a03fbe75-bfcf-4d9e-b848-5da01fc74201
+        namespace: a6b8fdfd-14b4-4264-94fc-9d41b92a7035
         file-extension: yml
         group: www.lmaye.com
         prefix: ${spring.application.name}
