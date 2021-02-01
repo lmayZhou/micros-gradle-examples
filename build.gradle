@@ -42,6 +42,7 @@ allprojects {
     //[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
     tasks.withType(JavaCompile) {
         options.encoding = encoding
+        options.compilerArgs += ["-Xlint:unchecked", "-Xlint:deprecation", "-parameters"]
     }
     // Maven资源库
     repositories {
