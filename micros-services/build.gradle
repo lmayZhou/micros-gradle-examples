@@ -9,8 +9,8 @@ subprojects {
         implementation('org.springframework.boot:spring-boot-starter-web') {
             exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         }
-        implementation 'org.springframework.boot:spring-boot-starter-undertow'
         implementation "com.lmax:disruptor:${disruptorVersion}"
+        implementation 'org.springframework.boot:spring-boot-starter-undertow'
         implementation 'org.springframework.boot:spring-boot-starter-log4j2'
         implementation "com.github.xiaoymin:knife4j-spring-boot-starter:${knife4jVersion}"
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
