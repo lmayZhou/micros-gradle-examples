@@ -58,6 +58,12 @@ allprojects {
             mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
         }
     }
+    // 编译构造
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 }
 // 顶级不打Jar包
 jar.enabled = false

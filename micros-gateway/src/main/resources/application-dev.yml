@@ -29,11 +29,11 @@ spring:
           filters:
             - StripPrefix=1
             # 请求数限流，使用默认的facatory
-            - name: RequestRateLimiter
-              args:
-                key-resolver: "#{@ipKeyResolver}"
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 1
+#            - name: RequestRateLimiter
+#              args:
+#                key-resolver: "#{@ipKeyResolver}"
+#                redis-rate-limiter.replenishRate: 1
+#                redis-rate-limiter.burstCapacity: 1
         - id: micros_user_route
           uri: lb://micros-user
           predicates:

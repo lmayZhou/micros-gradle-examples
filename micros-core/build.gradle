@@ -1,8 +1,3 @@
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
 /**
  * Gradle 依赖传递:
  * compile（implementation，api）: 这种是我们最常用的方式，使用该方式依赖的库将会参与编译和打包。

@@ -1,11 +1,5 @@
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
 // 项目依赖
 dependencies {
-    annotationProcessor 'org.projectlombok:lombok'
     implementation project(':micros-core')
     implementation project(':micros-starters:micros-starter-mybatis')
     // Nacos
